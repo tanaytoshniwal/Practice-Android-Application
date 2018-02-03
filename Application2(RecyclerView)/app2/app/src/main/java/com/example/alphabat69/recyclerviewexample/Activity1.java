@@ -14,7 +14,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Activity1 extends AppCompatActivity implements RecyclerView.OnItemTouchListener{
+public class Activity1 extends AppCompatActivity{
     private RecyclerView recyclerView;
     private List<Books> booksList=new ArrayList<>();
     private BooksAdapter booksAdapter;
@@ -31,7 +31,6 @@ public class Activity1 extends AppCompatActivity implements RecyclerView.OnItemT
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(booksAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addOnItemTouchListener(this);
         setData();
     }
     private void setData(){
@@ -77,22 +76,5 @@ public class Activity1 extends AppCompatActivity implements RecyclerView.OnItemT
         booksList.add(book);
         book=new Books("Book 20","author 20","not available");
         booksList.add(book);
-    }
-
-    @Override
-    public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-        return false;
-    }
-
-    @Override
-    public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-        View child=rv.findChildViewUnder(e.getX(),e.getY());
-        if(child!=null)
-            Toast.makeText(this,rv.getChildAdapterPosition(child),Toast.LENGTH_LONG);
-    }
-
-    @Override
-    public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
     }
 }
